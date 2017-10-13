@@ -42,7 +42,7 @@ kramdown:
 
 
 # Disqus settings
-disqus_username: hopeseebok
+# disqus_username: hopeseebok
 
 # Netease setttings
 netease_comment: false
