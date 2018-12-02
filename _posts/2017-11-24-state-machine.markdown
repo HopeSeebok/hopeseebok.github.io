@@ -43,4 +43,4 @@ tags:
 - 在Unlocked状态，投币不起作用，闸门还是开着；
 - 在Unlocked状态，如果有人push通过，人通过后闸门会由Unlocked状态转变成Locked状态。
 
-![Turnstile state diagram]("/img/state-machine/turnstile-state-diagram.png")
+<img src="http://hopeseebok.com/img/state-machine/turnstile-state-diagram.png">
