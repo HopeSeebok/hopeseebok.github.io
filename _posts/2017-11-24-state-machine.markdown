@@ -4,7 +4,7 @@ title:      "状态机与状态机图"
 subtitle:   " \"本篇文章旨在介绍什么是状态机，以及状态机的表示方法\""
 date:       2017-11-24
 author:     "Hope Seebok"
-header-img: "img/state-machine/bg.jpeg"
+header-img: "img/state-machine/bg.png"
 catalog: true
 tags:
     - 技术理论
@@ -43,4 +43,4 @@ tags:
 - 在Unlocked状态，投币不起作用，闸门还是开着；
 - 在Unlocked状态，如果有人push通过，人通过后闸门会由Unlocked状态转变成Locked状态。
 
-![Turnstile state diagram]("/img/state-machine/turnstile-state-diagram")
+![Turnstile state diagram]("/img/state-machine/turnstile-state-diagram.png")
