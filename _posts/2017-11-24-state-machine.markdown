@@ -86,6 +86,10 @@ tags:
 
 <img src="http://hopeseebok.com/img/state-machine/simple-state.png">
 
+<img src="http://hopeseebok.com/img/state-machine/simple-state.png" width="164">
+
+![](http://hopeseebok.com/img/state-machine/simple-state.png)
+
 - 简单状态的内部活动 (Internal activities)
 
   我们用状态内部隔离的方式对处于状态时的内部活动进行说明，格式为“活动标签 / 行为表达式”。活动标签指定行为表达式被调用时的事件，行为表达式说明具体的行为。  有几个活动标签是为特殊目的而保留的，不能用作事件名称。分别是： 
@@ -93,14 +97,16 @@ tags:
  · do（执行，只要元素处于此状态就执行）
  · exit（退出，状态退出时执行的动作/活动）        
 
-<img src="http://hopeseebok.com/img/state-machine/internal-activities.png">
+<img src="http://hopeseebok.com/img/state-machine/internal-activities.png" >
 
+<img src="http://hopeseebok.com/img/state-machine/internal-activities.png" width="244">
 - 复合状态 (Composite State)
 
   复合状态被定义为具有子状态（嵌套状态）的状态。  
 
 <img src="http://hopeseebok.com/img/state-machine/composite-state.png">
 
+<img src="http://hopeseebok.com/img/state-machine/composite-state.png" width="644">
 ###### 行为转换的表示
 
 转换是源顶点和目标顶点之间的有向关系。它将状态机从一个状态转换到另一个状态，表示状态机对特定类型事件发生的完整响应。
