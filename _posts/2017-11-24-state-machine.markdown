@@ -21,7 +21,7 @@ tags:
 
 有限状态机比其他一些计算模型（如图灵机）具有更少的计算能力。计算能力的区别意味着图灵机可以做的计算任务，但FSM（有限状态机）不能。这是因为FSM的内存受其拥有的状态数量的限制。 FSM往往在自动机理论的更通用领域中进行研究。
 
-###### 补充
+##### 补充
 
 状态机是一种抽象的数学模型，从上文定义中可以归纳出它的几个特征，助于理解：
 - 状态总数是有限的；
@@ -50,11 +50,11 @@ tags:
 
 ## 状态机的表示
 
-###### 有向图
+##### 有向图
 
 关于状态机的一个极度确切的描述是它是一个有向图形，由一组节点和一组相应的转换函数组成。节点即状态，节点之间的有向连接与函数即转换。在上面的“投币式旋转栅门”举例当中，即用了简单的有向图表示。
 
-###### 状态表
+##### 状态表
 
 有几种状态表可以用于表示状态机，最常见的表示如下所示：当前状态（例如B）和输入（例如Y）的组合显示下一状态（例如C）。表格中没有直接描述完整操作的信息，只能使用脚注添加。
 
@@ -64,7 +64,7 @@ tags:
 |Input Y|...|State C|...|
 |Input Z|...|...|...|
 
-###### UML中定义的状态机图
+##### UML中定义的状态机图
 
 统一建模语言（Unified Modeling Language）中对状态机图（State）的表示有完整的定义。UML状态机图克服了传统有限状态机表示方法的局限性，同时保留了它们的主要优点。
 
@@ -78,36 +78,34 @@ tags:
 
 行为状态机可以由行为分类器拥有，称为其上下文。上下文定义为此状态机定义的信号和调用触发器，以及状态机活动中可用的属性和操作。根据此分类器的接收和操作来定义状态机的信号触发器和呼叫触发器。
 
-###### 行为状态的表示 
+##### 行为状态的表示 
 
-- 简单状态 (Simple State)
+- **简单状态 (Simple State)**
 
   简单状态显示为带圆角的矩形和矩形内的状态名称       
 
-<img src="http://hopeseebok.com/img/state-machine/simple-state.png">
+<img src="http://hopeseebok.com/img/state-machine/simple-state.png" width="82">
 
-<img src="http://hopeseebok.com/img/state-machine/simple-state.png" width="164">
+<div align="left">
+<img src="http://hopeseebok.com/img/state-machine/simple-state.png" width="82">
+</div>
 
-![](http://hopeseebok.com/img/state-machine/simple-state.png)
-
-- 简单状态的内部活动 (Internal activities)
+- **简单状态的内部活动 (Internal activities)**
 
   我们用状态内部隔离的方式对处于状态时的内部活动进行说明，格式为“活动标签 / 行为表达式”。活动标签指定行为表达式被调用时的事件，行为表达式说明具体的行为。  有几个活动标签是为特殊目的而保留的，不能用作事件名称。分别是： 
 · entry （进入，状态进入后执行的动作/活动）
  · do（执行，只要元素处于此状态就执行）
  · exit（退出，状态退出时执行的动作/活动）        
 
-<img src="http://hopeseebok.com/img/state-machine/internal-activities.png" >
+<img src="http://hopeseebok.com/img/state-machine/internal-activities.png" width="122">
 
-<img src="http://hopeseebok.com/img/state-machine/internal-activities.png" width="244">
-- 复合状态 (Composite State)
+- **复合状态 (Composite State)**
 
   复合状态被定义为具有子状态（嵌套状态）的状态。  
 
-<img src="http://hopeseebok.com/img/state-machine/composite-state.png">
+<img src="http://hopeseebok.com/img/state-machine/composite-state.png" width="322">
 
-<img src="http://hopeseebok.com/img/state-machine/composite-state.png" width="644">
-###### 行为转换的表示
+##### 行为转换的表示
 
 转换是源顶点和目标顶点之间的有向关系。它将状态机从一个状态转换到另一个状态，表示状态机对特定类型事件发生的完整响应。
 
@@ -127,7 +125,7 @@ guard :== ‘[’ constraint ‘]’
 
 `[ ‘/’ behavior-expression ]` ：可选行为表达式，用以表达转换发生时的动作，如果转换触发则执行相应动作。根据属性和链接以及触发事件的参数或其范围中可见的任何其他特征来编写。行为表达式可以是一个动作，也可以是动作序列。
 
-###### 行为状态机示例：银行ATM
+##### 行为状态机示例：银行ATM
 
 这是显示银行自动柜员机（ATM）高抽象级行为状态机图的示例。
 
@@ -139,16 +137,16 @@ ATM最初被关闭。电源打开后，ATM执行启动操作并进入自我检�
 
 服务客户状态是一个复合状态，拥有顺序子状态客户身份验证，选择交易和交易。由于客户身份验证和交易本身是复合状态，所以显示了隐藏的分解指示符图标。当交易完成后，将从服务客户状态无触发转换到空闲状态。服务客户状态也有退出动作弹出卡片，无论是什么原因导致退出此状态都将弹出客户的卡片。
 
-###### 参考
+##### 参考
 
-Wikipedia Finite-state machine : https://en.wikipedia.org/wiki/Finite-state_machine
+[Wikipedia Finite-state machine](https://en.wikipedia.org/wiki/Finite-state_machine)
 
-Wikipedia State diagram : https://en.wikipedia.org/wiki/State_diagram
+[Wikipedia State diagram](https://en.wikipedia.org/wiki/State_diagram)
 
-UML State Machine Diagrams https://www.uml-diagrams.org/state-machine-diagrams.html
+[UML State Machine Diagrams](https://www.uml-diagrams.org/state-machine-diagrams.html)
 
-###### 推荐阅读
+##### 推荐阅读
 
-State machine versus Protocol state machine : https://stackoverflow.com/questions/24202786/state-machine-diagram-versus-protocol-state-machine-diagram
+[State machine versus Protocol state machine](https://stackoverflow.com/questions/24202786/state-machine-diagram-versus-protocol-state-machine-diagram)
 
-从有限状态机、图灵机到现代计算机：http://blog.sina.com.cn/s/blog_64ac3ab10100geru.html
+[从有限状态机、图灵机到现代计算机](http://blog.sina.com.cn/s/blog_64ac3ab10100geru.html)
