@@ -80,17 +80,13 @@ tags:
 
 ##### 行为状态的表示 
 
-- **简单状态 (Simple State)**
+**简单状态 (Simple State)**
 
   简单状态显示为带圆角的矩形和矩形内的状态名称       
 
 <img src="http://hopeseebok.com/img/state-machine/simple-state.png" width="82">
 
-<div align="left">
-<img src="http://hopeseebok.com/img/state-machine/simple-state.png" width="82">
-</div>
-
-- **简单状态的内部活动 (Internal activities)**
+**简单状态的内部活动 (Internal activities)**
 
   我们用状态内部隔离的方式对处于状态时的内部活动进行说明，格式为“活动标签 / 行为表达式”。活动标签指定行为表达式被调用时的事件，行为表达式说明具体的行为。  有几个活动标签是为特殊目的而保留的，不能用作事件名称。分别是： 
 · entry （进入，状态进入后执行的动作/活动）
@@ -99,7 +95,7 @@ tags:
 
 <img src="http://hopeseebok.com/img/state-machine/internal-activities.png" width="122">
 
-- **复合状态 (Composite State)**
+**复合状态 (Composite State)**
 
   复合状态被定义为具有子状态（嵌套状态）的状态。  
 
