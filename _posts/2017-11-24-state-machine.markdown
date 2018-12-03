@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "状态机与状态机图"
-subtitle:   " \"本篇文章旨在介绍什么是状态机，以及状态机的表示方法\""
+subtitle:   "\"本篇文章旨在介绍什么是状态机，以及状态机的表示方法\""
 date:       2017-11-24
 author:     "Hope Seebok"
 header-img: "img/state-machine/bg.png"
@@ -21,7 +21,7 @@ tags:
 
 有限状态机比其他一些计算模型（如图灵机）具有更少的计算能力。计算能力的区别意味着图灵机可以做的计算任务，但FSM（有限状态机）不能。这是因为FSM的内存受其拥有的状态数量的限制。 FSM往往在自动机理论的更通用领域中进行研究。
 
-#### 补充
+###### 补充
 
 状态机是一种抽象的数学模型，从上文定义中可以归纳出它的几个特征，助于理解：
 - 状态总数是有限的；
@@ -32,15 +32,117 @@ tags:
 
 上文中提到了“图灵机”，实际上在数理逻辑层面，图灵机就相当于一个有限状态机加上内存（图灵机当中的无限长纸带）的概念。正是因为有限状态机的状态是有限的而且没有内存的概念，这一点差距造成了上文当中所说的与图灵机的计算差别。
 
-## 举例
+## 举例：投币式旋转栅门
 
 投币式旋转栅门的机制可以通过状态机建模。投币式旋转栅门，在地铁和游乐园入口等地方处非常常见，在腰高处有三个旋转臂。最初，旋转臂被锁定，阻挡了入口，顾客需要投币（或刷卡）进入。在顾客投币通过之后，旋转臂将再次锁定直到投入另一枚币。
 
 投币式旋转栅门有两个状态：锁定（Locked）、打开（Unlocked）。有两种输入（input）会影响它的状态，投币（coin）和推动转臂（push）。
 抽象出它的行为状态图：
+
+<img src="http://hopeseebok.com/img/state-machine/turnstile-state-diagram.png" width="400">
+
 - 在Locked状态， push没有作用，不管push多少次闸门的状态还是lock；
 - 在Locked状态，投币会让闸门开锁，闸门可以让一个人通过；
 - 在Unlocked状态，投币不起作用，闸门还是开着；
 - 在Unlocked状态，如果有人push通过，人通过后闸门会由Unlocked状态转变成Locked状态。
 
-<img src="http://hopeseebok.com/img/state-machine/turnstile-state-diagram.png">
+
+
+## 状态机的表示
+
+###### 有向图
+
+关于状态机的一个极度确切的描述是它是一个有向图形，由一组节点和一组相应的转换函数组成。节点即状态，节点之间的有向连接与函数即转换。在上面的“投币式旋转栅门”举例当中，即用了简单的有向图表示。
+
+###### 状态表
+
+有几种状态表可以用于表示状态机，最常见的表示如下所示：当前状态（例如B）和输入（例如Y）的组合显示下一状态（例如C）。表格中没有直接描述完整操作的信息，只能使用脚注添加。
+
+|输入/当前状态|State A|State B|State C|
+|---|:---:|:---:|:---:|
+|Input X|...|...|...|
+|Input Y|...|State C|...|
+|Input Z|...|...|...|
+
+###### UML中定义的状态机图
+
+统一建模语言（Unified Modeling Language）中对状态机图（State）的表示有完整的定义。UML状态机图克服了传统有限状态机表示方法的局限性，同时保留了它们的主要优点。
+
+状态机图（State machine diagram）是一种行为图（Behavior diagram），它通过有限状态转换显示设计系统的一部分的离散行为。状态机图也可用于表示系统的一部分的使用协议。 所以UML中定义了两种状态机，分别是行为状态机（Behavioral state machine），和协议状态机（Protocol state machine）。由于侧重点的不同，下文只介绍UML中的行为状态机。
+
+## UML行为状态机图
+
+行为状态机定义行为，重点关注系统状态如何对事件发生的反应而改变。接受的事件被定义为转换的触发器。这种状态机是更为大众所熟知的状态机。
+
+行为被建模为遍历与转换相关联的状态节点的图形。过渡是由一系列事件的调度触发的。在遍历期间，状态机还可以执行一些活动。
+
+行为状态机可以由行为分类器拥有，称为其上下文。上下文定义为此状态机定义的信号和调用触发器，以及状态机活动中可用的属性和操作。根据此分类器的接收和操作来定义状态机的信号触发器和呼叫触发器。
+
+###### 行为状态的表示 
+
+- 简单状态 (Simple State)
+
+  简单状态显示为带圆角的矩形和矩形内的状态名称       
+
+<img src="http://hopeseebok.com/img/state-machine/simple-state.png">
+
+- 简单状态的内部活动 (Internal activities)
+
+  我们用状态内部隔离的方式对处于状态时的内部活动进行说明，格式为“活动标签 / 行为表达式”。活动标签指定行为表达式被调用时的事件，行为表达式说明具体的行为。  有几个活动标签是为特殊目的而保留的，不能用作事件名称。分别是： 
+· entry （进入，状态进入后执行的动作/活动）
+ · do（执行，只要元素处于此状态就执行）
+ · exit（退出，状态退出时执行的动作/活动）        
+
+<img src="http://hopeseebok.com/img/state-machine/internal-activities.png">
+
+- 复合状态 (Composite State)
+
+  复合状态被定义为具有子状态（嵌套状态）的状态。  
+
+<img src="http://hopeseebok.com/img/state-machine/composite-state.png">
+
+###### 行为转换的表示
+
+转换是源顶点和目标顶点之间的有向关系。它将状态机从一个状态转换到另一个状态，表示状态机对特定类型事件发生的完整响应。
+
+行为转换的默认表示法（巴斯科范式描述）：
+
+```
+transition ::= [ triggers ] [ guard ] [ ‘/’ behavior-expression ]
+
+triggers ::= trigger [ ‘,’ trigger ]*
+
+guard :== ‘[’ constraint ‘]’
+```
+
+`[ triggers ] ` ：可选触发器列表，用以指定可能导致状态转换的事件。如果事件匹配与触发器关联的事件，则事件满足触发器。由于同一事件可以启用多个转换，因此启动转换是必要但不充分的条件。在表示时，单个触发器之间用逗号隔开。
+
+`[ guard ]` ：可选约束条件，用以约束触发器，是一个布尔表达式，根据触发事件的参数以及上下文对象的属性和链接编写。仅在约束条件为真的情况下，触发器有效并发生转换（判断发生在转换触发器之前）。
+
+`[ ‘/’ behavior-expression ]` ：可选行为表达式，用以表达转换发生时的动作，如果转换触发则执行相应动作。根据属性和链接以及触发事件的参数或其范围中可见的任何其他特征来编写。行为表达式可以是一个动作，也可以是动作序列。
+
+###### 行为状态机示例：银行ATM
+
+这是显示银行自动柜员机（ATM）高抽象级行为状态机图的示例。
+
+ATM最初被关闭。电源打开后，ATM执行启动操作并进入自我检查状态。如果测试失败，则ATM进入无法服务状态，否则无触发转换到空闲状态。在空闲状态中，ATM等待客户的操作。
+
+当客户在银行卡读卡器中插入银行卡或信用卡时，ATM状态从空闲变为服务客户。在进入服务客户状态时，将执行进入动作读取卡片。请注意，从服务客户状态到空闲状态的转换有两个，其中一个是由取消操作触发的，因为客户可以随时取消交易（另一个在下文中解释）。
+
+<img src="http://hopeseebok.com/img/state-machine/atm-state.png">
+
+服务客户状态是一个复合状态，拥有顺序子状态客户身份验证，选择交易和交易。由于客户身份验证和交易本身是复合状态，所以显示了隐藏的分解指示符图标。当交易完成后，将从服务客户状态无触发转换到空闲状态。服务客户状态也有退出动作弹出卡片，无论是什么原因导致退出此状态都将弹出客户的卡片。
+
+###### 参考
+
+Wikipedia Finite-state machine : https://en.wikipedia.org/wiki/Finite-state_machine
+
+Wikipedia State diagram : https://en.wikipedia.org/wiki/State_diagram
+
+UML State Machine Diagrams https://www.uml-diagrams.org/state-machine-diagrams.html
+
+###### 推荐阅读
+
+State machine versus Protocol state machine : https://stackoverflow.com/questions/24202786/state-machine-diagram-versus-protocol-state-machine-diagram
+
+从有限状态机、图灵机到现代计算机：http://blog.sina.com.cn/s/blog_64ac3ab10100geru.html
